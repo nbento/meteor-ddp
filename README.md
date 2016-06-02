@@ -1,3 +1,6 @@
+**WARNING** This repository is hardly updated, use [Denis Andrejew's fork](https://github.com/seeekr/ddp-client) if you want an updated version.
+
+
 Meteor-DDP
 ==========
 
