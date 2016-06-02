@@ -117,7 +117,15 @@ MeteorDdp.prototype._changeDoc = function(msg) {
   var id = msg.id;
   var fields = msg.fields;
   var cleared = msg.cleared;
+
+  if (!this.collections[collName]) {
+      this.collections[collName] = {};
+  }
   var coll = this.collections[collName];
+
+  if (!coll[id]) {
+      coll[id] = fields;
+  }
 
   if (fields) {
     for (var k in fields) {
@@ -152,6 +160,13 @@ MeteorDdp.prototype._addDoc = function(msg) {
 MeteorDdp.prototype._removeDoc = function(msg) {
   var collName = msg.collection;
   var id = msg.id;
+
+  if (!this.collections[collName]) {
+      this.collections[collName] = {};
+  }
+  if (!this.collections[collName][id]) {
+      this.collections[collName][id] = {};
+  }
   var doc = this.collections[collName][id];
 
   var docCopy = JSON.parse(JSON.stringify(doc));
